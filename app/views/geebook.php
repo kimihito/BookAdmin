@@ -38,7 +38,6 @@
 		<tr>
 				<td><input type="button" value="登録" /></td>
 		</tr>
-
 		<?php } ?>
 	</table>
 
