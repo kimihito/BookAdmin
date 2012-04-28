@@ -1,5 +1,7 @@
 <?php 
-  App::import('hogehoge', 'oauth', array('file' => 'OAuth/oauth_consumer.php'));
+  //App::import('hogehoge', 'oauth', array('file' => 'OAuth/oauth_consumer.php'));
+  //App::import('Vendor', 'OAuth/OAuth.php');
+  require_once('../../vendors/OAuth/oauth_consumer.php');
   class MemberController extends AppController
   {
     public
@@ -51,7 +53,9 @@
     public function twitter()
     {
       $consumer = $this->createConsumer();
-      $requestToken = $consumer->getRequestToken('https://twitter.com/oauth/request_token','http://caloren.com/member/twitter_callback');//怪しい
+			//$consumer = new OAuthClient('5NQodaEga8MThaZs2xr2g','GXQiryxprtOXq7QQEQwDp45uhTMyZeCuCPl4c82g838');
+      //$consumer = $this->OAuthClient();
+      $requestToken = $consumer->getRequestToken('https://twitter.com/oauth/request_token','http://localhost/book/');//怪しい
       $this->Session->write('twitter_request_token',$requestToken);
       $this->redirect('https://twitter.com/oauth/authorize?oauth_token='.$requestToken->key);
     }  
@@ -111,7 +115,7 @@
 
     private function createConsumer()
     {
-      App::import('Vendor', 'oauth', array('file' => 'OAuth/oauth_consumer.php'));
+      //App::import('Vendor', 'oauth', array('file' => 'OAuth/oauth_consumer.php'));
       return new OAuth_Consumer('5NQodaEga8MThaZs2xr2g','GXQiryxprtOXq7QQEQwDp45uhTMyZeCuCPl4c82g838');
     }
 
